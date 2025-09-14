@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<article class="blog-post">
+    <header class="post-header">
+        <div class="container">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <div class="post-meta">
+                <time datetime="{{ page.date | date_to_xmlschema }}">
+                    {{ page.date | date: "%B %d, %Y" }}
+                </time>
+                <span class="reading-time">
+                    {% assign words = content | strip_html | number_of_words %}
+                    {% assign reading_time = words | divided_by: site.words_per_minute %}
+                    {{ reading_time | append: " min read" }}
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <div class="post-content">
+        <div class="container">
+            <aside class="table-of-contents">
+                {% include table-of-contents.html %}
+            </aside>
+            
+            <div class="content-wrapper">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+</article>

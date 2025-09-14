@@ -1,0 +1,86 @@
+---
+layout: default
+---
+
+<article class="blog-post chapter">
+    <header class="post-header">
+        <div class="container">
+            <div class="chapter-number">Chapter {{ page.chapter_number | default: "1" }}</div>
+            <h1 class="post-title">{{ page.title }}</h1>
+            <div class="post-meta">
+                <span class="reading-time">
+                    {% if page.reading_time %}
+                        {{ page.reading_time }} min read
+                    {% else %}
+                        {% assign words = content | strip_html | number_of_words %}
+                        {% assign reading_time = words | divided_by: 200 %}
+                        {{ reading_time }} min read
+                    {% endif %}
+                </span>
+                {% if page.date %}
+                <time datetime="{{ page.date | date_to_xmlschema }}">
+                    {{ page.date | date: "%B %d, %Y" }}
+                </time>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="post-content">
+        <div class="container">
+            <aside class="table-of-contents">
+                {% include table-of-contents.html %}
+            </aside>
+            
+            <div class="content-wrapper">
+                {{ content }}
+                
+                <!-- Chapter Navigation -->
+                <nav class="chapter-nav">
+                    {% assign chapters = site.chapters | sort: 'chapter_number' %}
+                    {% assign current_index = 0 %}
+                    
+                    {% for chapter in chapters %}
+                        {% if chapter.url == page.url %}
+                            {% assign current_index = forloop.index0 %}
+                            {% break %}
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% assign prev_index = current_index | minus: 1 %}
+                    {% assign next_index = current_index | plus: 1 %}
+                    
+                    {% if prev_index >= 0 %}
+                        {% assign prev_chapter = chapters[prev_index] %}
+                        <a href="{{ prev_chapter.url | relative_url }}" class="nav-link prev">
+                            <div class="nav-direction">← Previous</div>
+                            <div class="nav-title">{{ prev_chapter.title }}</div>
+                        </a>
+                    {% else %}
+                        <div></div>
+                    {% endif %}
+                    
+                    {% if next_index < chapters.size %}
+                        {% assign next_chapter = chapters[next_index] %}
+                        <a href="{{ next_chapter.url | relative_url }}" class="nav-link next">
+                            <div class="nav-direction">Next →</div>
+                            <div class="nav-title">{{ next_chapter.title }}</div>
+                        </a>
+                    {% else %}
+                        <div></div>
+                    {% endif %}
+                </nav>
+            </div>
+        </div>
+    </div>
+</article>
+
+<style>
+.chapter-number {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+</style>
