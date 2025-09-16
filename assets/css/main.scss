@@ -1,0 +1,33 @@
+---
+---
+
+@import "variables";      // CSS variables first
+@import "typography";     // Typography styles
+@import "layout";         // Layout and structure
+@import "components";     // Reusable components
+@import "reading-experience"; // Reading-specific features
+@import "utilities";      // Utility classes
+
+// Base reset styles only (everything else should be in the imported files)
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    font-size: var(--font-size-base);
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+// Any site-specific overrides can go here
+// (Keep this section minimal - most styles should be in the imported files)
