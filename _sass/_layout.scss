@@ -1,0 +1,152 @@
+// Main layout styles
+.main-content {
+  min-height: 100vh;
+  padding-top: 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Header styles
+.site-header {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+// Navigation
+.site-nav {
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+  }
+  
+  a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    
+    &:hover, &.active {
+      color: var(--primary-color);
+    }
+  }
+}
+
+// Post header
+.post-header {
+  text-align: center;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  margin-bottom: 3rem;
+  
+  .post-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .post-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+}
+
+// Post content layout
+.post-content {
+  .container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    max-width: 1400px; // Wider container for more content space
+  }
+  
+  .sidebar-left {
+    width: 280px;
+    flex-shrink: 0; // Prevent sidebar from shrinking
+    order: 1; // Left side
+  }
+  
+  .content-wrapper {
+    flex: 1;
+    max-width: none; // Remove max-width restriction
+    min-width: 0; // Prevent flex item from overflowing
+    order: 2; // Right side
+  }
+}
+
+// Footer
+.site-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 0;
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+// Responsive design updates
+@media (max-width: 1024px) {
+  .post-content .container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .sidebar-left {
+    width: 100% !important;
+    order: 2; // Move TOC below content on mobile
+  }
+  
+  .content-wrapper {
+    order: 1; // Content first on mobile
+  }
+  
+  .table-of-contents {
+    position: static !important;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .post-content .container {
+    gap: 1rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+}
