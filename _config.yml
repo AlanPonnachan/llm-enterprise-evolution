@@ -1,7 +1,7 @@
 title: "LLM Evolution in Enterprise"
 description: "A comprehensive guide to Large Language Models in enterprise environments"
-url: "https://AlanPonnachan.github.io"  # Replace 'username' with your actual GitHub username
-baseurl: "/llm-enterprise-evolution"  # This matches your repository name
+url: "https://AlanPonnachan.github.io"  
+baseurl: "/llm-enterprise-evolution" 
 
 
 # Build settings
