@@ -72,6 +72,7 @@ Its authors boldly claimed machine translation was a solved problem, a predictio
   <figcaption>The IBM 701, which ran the Georgetown-IBM experiment, creating a wave of optimism and securing decades of research funding for machine translation.</figcaption>
 </figure>
 
+
 ---
 
 ### Mini Case Study: ELIZA (1966) – The Mechanical Therapist  
@@ -122,8 +123,13 @@ A sample dialogue with SHRDLU reveals its sophistication:
 
 SHRDLU was groundbreaking because it integrated **syntax**, **semantics**, and a **model of its world**. It could understand context, resolve pronouns (*“it”*), and perform actions. For a brief, shining moment, it seemed that true, general-purpose machine understanding was just around the corner.  
 
-> ![Blocks World](diagram-placeholder.jpg)  
-> *A diagram of the SHRDLU "blocks world," with a sample dialogue transcript showing the connection between commands and actions.*  
+<figure class="image-figure">
+  <img src="{{ '/assets/images/chapters/01-introduction/blocksworld.png' | relative_url }}" 
+       alt="SHRDLU blocks world"
+       loading="lazy">
+  <figcaption>A diagram of the SHRDLU "blocks world"</figcaption>
+</figure>
+
 
 ---
 
