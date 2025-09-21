@@ -20,14 +20,13 @@ layout: default
     </header>
 
     <div class="post-content">
-        <div class="container">
-            <aside class="table-of-contents">
-                {% include table-of-contents.html %}
-            </aside>
-            
-            <div class="content-wrapper">
-                {{ content }}
-            </div>
+    <div class="container">
+        <div class="content-wrapper">
+            {{ content }}
         </div>
     </div>
+</div>
+
+<!-- Include TOC after content -->
+{% include table-of-contents.html %}
 </article>

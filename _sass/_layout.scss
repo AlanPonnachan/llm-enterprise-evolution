@@ -87,25 +87,24 @@
 // Post content layout
 .post-content {
   .container {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    max-width: 1400px; // Wider container for more content space
-  }
-  
-  .sidebar-left {
-    width: 280px;
-    flex-shrink: 0; // Prevent sidebar from shrinking
-    order: 1; // Left side
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
   }
   
   .content-wrapper {
-    flex: 1;
-    max-width: none; // Remove max-width restriction
-    min-width: 0; // Prevent flex item from overflowing
-    order: 2; // Right side
+    max-width: none;
+    width: 100%;
   }
 }
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .post-content .container {
+    padding: 0 1rem;
+  }
+}
+
 
 // Footer
 .site-footer {
