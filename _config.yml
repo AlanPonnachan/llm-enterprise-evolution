@@ -1,0 +1,42 @@
+title: "LLM Evolution in Enterprise"
+description: "A comprehensive guide to Large Language Models in enterprise environments"
+url: "https://AlanPonnachan.github.io"  # Replace 'username' with your actual GitHub username
+baseurl: "/llm-enterprise-evolution"  # This matches your repository name
+
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:year/:month/:day/:title/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Collections for chapters
+collections:
+  chapters:
+    output: true
+    permalink: /:collection/:name/
+
+# Reading time calculation
+reading_time: true
+words_per_minute: 200
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Table of Contents"
+    url: "/toc/"
+  - title: "About"
+    url: "/about/"
+
+# Social links
+author:
+  name: "Your Name"
+  email: "your@email.com"
+  twitter: "yourusername"
+  github: "yourusername"

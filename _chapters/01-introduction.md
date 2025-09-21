@@ -66,15 +66,11 @@ This was the "Sputnik moment" for machine translation. In a carefully orchestrat
 Its authors boldly claimed machine translation was a solved problem, a prediction that led to decades of funding but also set the stage for later disillusionment when the true complexity of the problem became clear.  
 
 <figure class="image-figure">
-  <img src="/assets/images/chapters/01-introduction/ibm701.jpg" 
+  <img src="{{ '/assets/images/chapters/01-introduction/ibm701.jpg' | relative_url }}" 
        alt="The IBM 701"
        loading="lazy">
-  <figcaption>The IBM 701</figcaption>
+  <figcaption>The IBM 701, which ran the Georgetown-IBM experiment, creating a wave of optimism and securing decades of research funding for machine translation.</figcaption>
 </figure>
-
-> ![The IBM 701](/assets/images/chapters/01-introduction/ibm701.jpg)
- 
-> *The IBM 701, which ran the Georgetown-IBM experiment, creating a wave of optimism and securing decades of research funding for machine translation.*  
 
 ---
 
