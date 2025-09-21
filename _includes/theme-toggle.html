@@ -1,0 +1,118 @@
+<div class="theme-toggle-container">
+  <button 
+    class="theme-toggle" 
+    id="theme-toggle"
+    aria-label="Toggle dark mode"
+    title="Toggle dark/light mode (Ctrl+Shift+D)">
+    <div class="toggle-track">
+      <div class="toggle-thumb">
+        <span class="toggle-icon sun">☀️</span>
+        <span class="toggle-icon moon">🌙</span>
+      </div>
+    </div>
+    <span class="toggle-label" id="theme-label">Auto</span>
+  </button>
+</div>
+
+<script>
+(function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeLabel = document.getElementById('theme-label');
+  const body = document.body;
+  
+  // Theme states: 'auto', 'light', 'dark'
+  let currentTheme = localStorage.getItem('theme') || 'auto';
+  
+  // Apply theme
+  function applyTheme(theme) {
+    const root = document.documentElement;
+    
+    switch(theme) {
+      case 'light':
+        root.setAttribute('data-theme', 'light');
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        themeLabel.textContent = 'Light';
+        break;
+      case 'dark':
+        root.setAttribute('data-theme', 'dark');
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        themeLabel.textContent = 'Dark';
+        break;
+      default: // 'auto'
+        root.removeAttribute('data-theme');
+        body.classList.remove('light-mode', 'dark-mode');
+        body.classList.add('auto-mode');
+        themeLabel.textContent = 'Auto';
+        break;
+    }
+    
+    // Update toggle appearance
+    updateToggleAppearance(theme);
+  }
+  
+  // Update toggle button appearance
+  function updateToggleAppearance(theme) {
+    const track = themeToggle.querySelector('.toggle-track');
+    const thumb = themeToggle.querySelector('.toggle-thumb');
+    
+    track.className = 'toggle-track';
+    thumb.className = 'toggle-thumb';
+    
+    switch(theme) {
+      case 'light':
+        track.classList.add('light');
+        thumb.classList.add('light');
+        break;
+      case 'dark':
+        track.classList.add('dark');
+        thumb.classList.add('dark');
+        break;
+      default:
+        track.classList.add('auto');
+        thumb.classList.add('auto');
+        break;
+    }
+  }
+  
+  // Cycle through themes
+  function cycleTheme() {
+    const themes = ['auto', 'light', 'dark'];
+    const currentIndex = themes.indexOf(currentTheme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    currentTheme = themes[nextIndex];
+    
+    localStorage.setItem('theme', currentTheme);
+    applyTheme(currentTheme);
+    
+    // Add animation class
+    themeToggle.classList.add('toggling');
+    setTimeout(() => themeToggle.classList.remove('toggling'), 300);
+  }
+  
+  // Initialize theme
+  applyTheme(currentTheme);
+  
+  // Event listeners
+  themeToggle.addEventListener('click', cycleTheme);
+  
+  // Keyboard shortcut: Ctrl+Shift+D
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+      e.preventDefault();
+      cycleTheme();
+    }
+  });
+  
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addListener(function(e) {
+      if (currentTheme === 'auto') {
+        applyTheme('auto'); // Re-apply to update appearance
+      }
+    });
+  }
+})();
+</script>
