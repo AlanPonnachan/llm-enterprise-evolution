@@ -1,4 +1,4 @@
-// Colors
+// Light mode colors (default)
 :root {
   --primary-color: #667eea;
   --secondary-color: #764ba2;
@@ -8,40 +8,114 @@
   --text-primary: #2d3748;
   --text-secondary: #4a5568;
   --text-muted: #718096;
+  --text-inverse: #ffffff;
   
   // Background colors
   --bg-primary: #ffffff;
   --bg-secondary: #f7fafc;
   --bg-tertiary: #edf2f7;
+  --bg-inverse: #1a202c;
   
   // Borders and shadows
   --border-color: #e2e8f0;
   --border-light: #f1f5f9;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-dark: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   
-  // Spacing
-  --container-max-width: 1200px;
-  --content-max-width: 800px;
-  --sidebar-width: 280px;
+  // Code blocks
+  --code-bg: #f8f9fa;
+  --code-border: #e9ecef;
+  --code-text: #495057;
+  
+  // Special elements
+  --blockquote-bg: rgba(102, 126, 234, 0.05);
+  --blockquote-border: #667eea;
+  --selection-bg: rgba(102, 126, 234, 0.2);
+  
+  // Layout
+  --container-max-width: 1400px;
+  --sidebar-width: 320px;
+  --content-sidebar-gap: 2rem;
   
   // Typography
   --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
   --font-size-base: 1.125rem;
   --line-height-base: 1.8;
+  
+  // Transitions
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
-// Dark mode
+// Dark mode colors
+[data-theme="dark"] {
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --text-muted: #a0aec0;
+  --text-inverse: #2d3748;
+  
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-tertiary: #4a5568;
+  --bg-inverse: #ffffff;
+  
+  --border-color: #4a5568;
+  --border-light: #2d3748;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  
+  // Code blocks in dark mode
+  --code-bg: #2d3748;
+  --code-border: #4a5568;
+  --code-text: #e2e8f0;
+  
+  // Special elements in dark mode
+  --blockquote-bg: rgba(102, 126, 234, 0.1);
+  --blockquote-border: #667eea;
+  --selection-bg: rgba(102, 126, 234, 0.3);
+}
+
+// Auto dark mode (respects system preference)
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --text-primary: #f7fafc;
     --text-secondary: #e2e8f0;
     --text-muted: #a0aec0;
+    --text-inverse: #2d3748;
+    
     --bg-primary: #1a202c;
     --bg-secondary: #2d3748;
     --bg-tertiary: #4a5568;
+    --bg-inverse: #ffffff;
+    
     --border-color: #4a5568;
     --border-light: #2d3748;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    
+    --code-bg: #2d3748;
+    --code-border: #4a5568;
+    --code-text: #e2e8f0;
+    
+    --blockquote-bg: rgba(102, 126, 234, 0.1);
+    --selection-bg: rgba(102, 126, 234, 0.3);
   }
+}
+
+// Smooth transitions for theme switching
+* {
+  transition: 
+    background-color var(--transition-normal),
+    border-color var(--transition-normal),
+    color var(--transition-normal),
+    box-shadow var(--transition-normal);
+}
+
+// Selection colors
+::selection {
+  background: var(--selection-bg);
+  color: var(--text-primary);
 }
