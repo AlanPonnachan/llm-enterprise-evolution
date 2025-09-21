@@ -1,0 +1,23 @@
+<script>
+// Theme initialization - runs immediately to prevent flash
+(function() {
+  const savedTheme = localStorage.getItem('theme') || 'auto';
+  const root = document.documentElement;
+  
+  function applyInitialTheme(theme) {
+    switch(theme) {
+      case 'light':
+        root.setAttribute('data-theme', 'light');
+        break;
+      case 'dark':
+        root.setAttribute('data-theme', 'dark');
+        break;
+      default:
+        root.removeAttribute('data-theme');
+        break;
+    }
+  }
+  
+  applyInitialTheme(savedTheme);
+})();
+</script>

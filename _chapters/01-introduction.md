@@ -1,8 +1,8 @@
 ---
 layout: chapter
-title: "Chapter 1: Introduction"
+title: "The Promise"
 chapter_number: 1
-reading_time: 10
+reading_time: 8
 ---
 
 # Part 1: Why Did Early AI Fail at Language?  

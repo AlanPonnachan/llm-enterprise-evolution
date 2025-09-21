@@ -79,6 +79,25 @@
       }
     }
   }
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-lg);
+  
+  .toc-toggle {
+    background: var(--primary-color);
+    
+    &:hover {
+      background: var(--secondary-color);
+    }
+  }
+  
+  .toc-content {
+    background: var(--bg-primary);
+  }
+  
+  .toc-progress-fill {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  }
 }
 
 // Toggle button

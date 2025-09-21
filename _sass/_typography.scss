@@ -110,13 +110,19 @@
   
   // Code
   code {
-    font-family: 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
+    font-family: var(--font-family-mono);
+    background: var(--code-bg);
+    color: var(--code-text);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-size: 0.9em;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--code-border);
+    
+    // Prevent code from being too bright in dark mode
+    [data-theme="dark"] & {
+      background: var(--bg-tertiary);
+      border-color: var(--border-color);
+    }
   }
   
   pre {
@@ -132,6 +138,15 @@
       border: none;
       padding: 0;
       font-size: 0.9rem;
+    }
+
+    [data-theme="dark"] & {
+      background: var(--bg-tertiary);
+      border-color: var(--border-color);
+      
+      code {
+        color: var(--text-secondary);
+      }
     }
   }
   
