@@ -8,7 +8,7 @@ description: "A comprehensive 6-hour deep dive into..."
 
 
 #### [Chapter 1: Symbolic Era]({{ site.baseurl }}/chapters/01-symbolic-era/)
-#### [Chapter 2: Core Concepts]({{ site.baseurl }}/chapters/02-statistical-revolution/)
+#### [Chapter 2: The Statistical Revolution]({{ site.baseurl }}/chapters/02-statistical-revolution/)
 #### [Chapter 3: Deep Dive]({{ site.baseurl }}/chapters/03-deep-dive/)
 #### [Chapter 4: Real-world Examples]({{ site.baseurl }}/chapters/04-examples/)
 

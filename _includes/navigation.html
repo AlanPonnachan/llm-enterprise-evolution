@@ -2,62 +2,210 @@
     <ul>
         <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
         <li><a href="{{ '/toc/' | relative_url }}" {% if page.url == '/toc/' %}class="active"{% endif %}>Contents</a></li>
-        {% if site.chapters.size > 0 %}
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle">Chapters</a>
-                <ul class="dropdown-menu">
-                    {% assign chapters = site.chapters | sort: 'chapter_number' %}
-                    {% for chapter in chapters %}
-                        <li><a href="{{ chapter.url | relative_url }}">{{ chapter.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endif %}
+        <li>
+            <button class="chapters-trigger" id="chapters-trigger">
+                📚 Chapters <span class="chapter-count">({{ site.chapters.size }})</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+        </li>
         <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
     </ul>
 </nav>
 
-<style>
-.dropdown {
-    position: relative;
-}
+<!-- Chapter Browser Modal -->
+<div class="chapter-modal" id="chapter-modal">
+    <div class="chapter-modal-overlay" id="chapter-modal-overlay"></div>
+    <div class="chapter-modal-content">
+        <div class="chapter-modal-header">
+            <h3>📚 Browse Chapters</h3>
+            <div class="chapter-modal-controls">
+                <input type="text" class="chapter-search" id="chapter-search" placeholder="Search chapters...">
+                <button class="chapter-modal-close" id="chapter-modal-close">×</button>
+            </div>
+        </div>
+        
+        <div class="chapter-modal-body">
+            <!-- Progress Overview -->
+            <div class="chapter-progress-overview">
+                <div class="progress-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="total-chapters">{{ site.chapters.size }}</span>
+                        <span class="stat-label">Total Chapters</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="current-chapter">1</span>
+                        <span class="stat-label">Current</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="reading-progress">0%</span>
+                        <span class="stat-label">Progress</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter Grid/List -->
+            <div class="chapter-grid" id="chapter-grid">
+                {% assign chapters = site.chapters | sort: 'chapter_number' %}
+                {% for chapter in chapters %}
+                <div class="chapter-card" data-chapter="{{ chapter.chapter_number }}" data-title="{{ chapter.title | downcase }}">
+                    <div class="chapter-number">{{ chapter.chapter_number }}</div>
+                    <div class="chapter-info">
+                        <h4 class="chapter-title">{{ chapter.title | remove: 'Chapter ' | remove: chapter.chapter_number | remove: ':' | strip }}</h4>
+                        <div class="chapter-meta">
+                            {% if chapter.reading_time %}
+                                <span class="reading-time">⏱️ {{ chapter.reading_time }} min</span>
+                            {% endif %}
+                            {% if chapter.date %}
+                                <span class="chapter-date">📅 {{ chapter.date | date: "%b %d" }}</span>
+                            {% endif %}
+                        </div>
+                        {% if chapter.description %}
+                            <p class="chapter-description">{{ chapter.description | truncate: 100 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="chapter-actions">
+                        <a href="{{ chapter.url | relative_url }}" class="chapter-link">
+                            {% if page.url == chapter.url %}
+                                <span class="current-badge">Current</span>
+                            {% else %}
+                                Read →
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="chapter-modal-footer">
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid">Grid</button>
+                <button class="view-btn" data-view="list">List</button>
+            </div>
+            <div class="chapter-modal-actions">
+                <button class="btn btn-secondary" id="close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    box-shadow: var(--shadow);
-    min-width: 200px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.2s ease;
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu li {
-    list-style: none;
-}
-
-.dropdown-menu a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: all 0.2s ease;
-}
-
-.dropdown-menu a:hover {
-    background: var(--bg-secondary);
-    color: var(--primary-color);
-}
-</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const chaptersBtn = document.getElementById('chapters-trigger');
+    const modal = document.getElementById('chapter-modal');
+    const overlay = document.getElementById('chapter-modal-overlay');
+    const closeBtn = document.getElementById('chapter-modal-close');
+    const closeModalBtn = document.getElementById('close-modal');
+    const searchInput = document.getElementById('chapter-search');
+    const chapterGrid = document.getElementById('chapter-grid');
+    const viewBtns = document.querySelectorAll('.view-btn');
+    
+    // Open modal - ENHANCED WITH POSITIONING FIX
+    function openModal() {
+        modal.classList.add('active');
+        document.body.classList.add('modal-open');
+        
+        // Force modal to be visible and properly positioned
+        modal.style.display = 'flex';
+        modal.style.zIndex = '9999';
+        
+        // Focus search input after modal is fully opened
+        setTimeout(() => {
+            if (searchInput) {
+                searchInput.focus();
+            }
+        }, 100);
+        
+        updateProgress();
+        
+        // Ensure modal content is properly positioned
+        const modalContent = modal.querySelector('.chapter-modal-content');
+        if (modalContent) {
+            modalContent.style.zIndex = '10000';
+        }
+    }
+    
+    // Close modal - ENHANCED
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+        
+        // Clear search and reset filters after animation
+        setTimeout(() => {
+            if (searchInput) {
+                searchInput.value = '';
+            }
+            filterChapters('');
+        }, 300);
+    }
+    
+    // Update progress stats
+    function updateProgress() {
+        const currentChapter = document.querySelector('.chapter-card .current-badge')?.closest('.chapter-card');
+        if (currentChapter) {
+            const chapterNum = currentChapter.dataset.chapter;
+            const totalChapters = document.querySelectorAll('.chapter-card').length;
+            const progress = Math.round((chapterNum / totalChapters) * 100);
+            
+            document.getElementById('current-chapter').textContent = chapterNum;
+            document.getElementById('reading-progress').textContent = progress + '%';
+        }
+    }
+    
+    // Filter chapters
+    function filterChapters(query) {
+        const cards = document.querySelectorAll('.chapter-card');
+        const lowerQuery = query.toLowerCase();
+        
+        cards.forEach(card => {
+            const title = card.dataset.title;
+            const chapterNum = card.dataset.chapter;
+            const visible = title.includes(lowerQuery) || chapterNum.includes(lowerQuery);
+            
+            card.style.display = visible ? 'flex' : 'none';
+        });
+    }
+    
+    // Change view mode
+    function changeView(view) {
+        chapterGrid.className = `chapter-grid ${view}-view`;
+        viewBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.view === view);
+        });
+        localStorage.setItem('chapter-view', view);
+    }
+    
+    // Event listeners
+    chaptersBtn.addEventListener('click', openModal);
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    
+    searchInput.addEventListener('input', function() {
+        filterChapters(this.value);
+    });
+    
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            changeView(this.dataset.view);
+        });
+    });
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+        
+        // Ctrl/Cmd + K to open chapter browser
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            openModal();
+        }
+    });
+    
+    // Initialize saved view
+    const savedView = localStorage.getItem('chapter-view') || 'grid';
+    changeView(savedView);
+});
+</script>
