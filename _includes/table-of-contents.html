@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressText = document.getElementById('toc-progress-text');
     const timeRemaining = document.getElementById('time-remaining');
     
-    const headings = document.querySelectorAll('.content-wrapper h2, .content-wrapper h3, .content-wrapper h4');
+    const headings = document.querySelectorAll('.content-wrapper h1, .content-wrapper h2');
+
     
     // Check if TOC should be hidden when no headings
     if (headings.length === 0) {

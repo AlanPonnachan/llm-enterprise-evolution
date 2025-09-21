@@ -1,11 +1,11 @@
 ---
 layout: chapter
-title: "The Promise"
+title: "The Symbolic Era"
 chapter_number: 1
 reading_time: 8
 ---
 
-# Part 1: Why Did Early AI Fail at Language?  
+
 ## The Promise and Peril of Hand-Crafted Rules  
 
 We live in a world saturated with linguistic AI. We dictate emails to our phones, our search engines finish our thoughts, and digital assistants schedule our lives, all through the medium of natural language. This seamless interaction feels almost effortless, a kind of modern magic.  
@@ -66,7 +66,7 @@ This was the "Sputnik moment" for machine translation. In a carefully orchestrat
 Its authors boldly claimed machine translation was a solved problem, a prediction that led to decades of funding but also set the stage for later disillusionment when the true complexity of the problem became clear.  
 
 <figure class="image-figure">
-  <img src="{{ '/assets/images/chapters/01-introduction/ibm701.jpg' | relative_url }}" 
+  <img src="{{ '/assets/images/chapters/01-symbolic-era/ibm701.jpg' | relative_url }}" 
        alt="The IBM 701"
        loading="lazy">
   <figcaption>The IBM 701, which ran the Georgetown-IBM experiment, creating a wave of optimism and securing decades of research funding for machine translation.</figcaption>
@@ -124,7 +124,7 @@ A sample dialogue with SHRDLU reveals its sophistication:
 SHRDLU was groundbreaking because it integrated **syntax**, **semantics**, and a **model of its world**. It could understand context, resolve pronouns (*“it”*), and perform actions. For a brief, shining moment, it seemed that true, general-purpose machine understanding was just around the corner.  
 
 <figure class="image-figure">
-  <img src="{{ '/assets/images/chapters/01-introduction/blocksworld.png' | relative_url }}" 
+  <img src="{{ '/assets/images/chapters/01-symbolic-era/blocksworld.png' | relative_url }}" 
        alt="SHRDLU blocks world"
        loading="lazy">
   <figcaption>A diagram of the SHRDLU "blocks world"</figcaption>
