@@ -1,0 +1,15 @@
+<footer class="site-footer">
+    <div class="container">
+        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name | default: "Author Name" }}. All rights reserved.</p>
+        <p>
+            <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
+            {% if site.author.twitter %}
+            | <a href="https://twitter.com/{{ site.author.twitter }}" target="_blank">Twitter</a>
+            {% endif %}
+            {% if site.author.email %}
+            | <a href="mailto:{{ site.author.email }}">Email</a>
+            {% endif %}
+        </p>
+        <p><small>Built with Jekyll and hosted on GitHub Pages</small></p>
+    </div>
+</footer>

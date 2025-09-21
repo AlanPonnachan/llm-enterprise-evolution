@@ -1,0 +1,11 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-content">
+            <a class="site-title" href="{{ '/' | relative_url }}">
+                {{ site.title | default: "Blog Title" }}
+            </a>
+            
+            {% include navigation.html %}
+        </div>
+    </div>
+</header>

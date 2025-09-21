@@ -1,0 +1,63 @@
+<nav class="site-nav">
+    <ul>
+        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/toc/' | relative_url }}" {% if page.url == '/toc/' %}class="active"{% endif %}>Contents</a></li>
+        {% if site.chapters.size > 0 %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Chapters</a>
+                <ul class="dropdown-menu">
+                    {% assign chapters = site.chapters | sort: 'chapter_number' %}
+                    {% for chapter in chapters %}
+                        <li><a href="{{ chapter.url | relative_url }}">{{ chapter.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        <li><a href="{{ '/about/' | relative_url }}" {% if page.url == '/about/' %}class="active"{% endif %}>About</a></li>
+    </ul>
+</nav>
+
+<style>
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    list-style: none;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-color);
+}
+</style>

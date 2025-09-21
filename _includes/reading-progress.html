@@ -1,0 +1,19 @@
+<div class="reading-progress"></div>
+
+<script>
+function updateReadingProgress() {
+    const article = document.querySelector('.post-content');
+    if (!article) return;
+    
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.body.scrollHeight;
+    const winHeight = window.innerHeight;
+    const scrollPercent = scrollTop / (docHeight - winHeight);
+    const scrollPercentRounded = Math.round(scrollPercent * 100);
+    
+    document.querySelector('.reading-progress').style.width = scrollPercentRounded + '%';
+}
+
+window.addEventListener('scroll', updateReadingProgress);
+window.addEventListener('resize', updateReadingProgress);
+</script>
