@@ -10,7 +10,7 @@
   transition: width 0.1s ease;
 }
 
-// Table of contents
+// Collapsible Table of Contents
 .table-of-contents {
   position: fixed;
   left: 0;
@@ -58,52 +58,13 @@
     &.collapsed {
       transform: translateX(-100%);
     }
-    
-    .toc-toggle {
-      position: fixed;
-      right: -50px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 100px;
-      border-radius: 0 8px 8px 0;
-      flex-direction: column;
-      
-      .toc-toggle-text {
-        writing-mode: vertical-lr;
-        font-size: 0.8rem;
-      }
-      
-      .toc-toggle-arrow {
-        transform: rotate(90deg);
-      }
-    }
-  }
-  background: var(--bg-primary);
-  border-color: var(--border-color);
-  box-shadow: var(--shadow-lg);
-  
-  .toc-toggle {
-    background: var(--primary-color);
-    
-    &:hover {
-      background: var(--secondary-color);
-    }
-  }
-  
-  .toc-content {
-    background: var(--bg-primary);
-  }
-  
-  .toc-progress-fill {
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   }
 }
 
-// Toggle button
+// Toggle button - SEPARATE FROM TOC
 .toc-toggle {
-  position: absolute;
-  right: -40px;
+  position: fixed;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   width: 40px;
@@ -122,6 +83,14 @@
   font-weight: 500;
   transition: all 0.3s ease;
   box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+  z-index: 1001;
+  
+  // When TOC is expanded, hide the toggle button
+  body:not(.toc-collapsed) .toc-toggle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%);
+}
   
   &:hover {
     background: var(--secondary-color);
@@ -145,6 +114,23 @@
   .toc-toggle-arrow {
     font-size: 0.8rem;
     transition: transform 0.3s ease;
+  }
+}
+
+// Mobile toggle adjustments
+@media (max-width: 1024px) {
+  .toc-toggle {
+    width: 50px;
+    height: 100px;
+    
+    .toc-toggle-text {
+      writing-mode: vertical-lr;
+      font-size: 0.8rem;
+    }
+    
+    .toc-toggle-arrow {
+      transform: rotate(90deg);
+    }
   }
 }
 
@@ -361,6 +347,7 @@
   transition: opacity 0.3s ease;
 }
 
+// Mobile specific styles
 @media (max-width: 1024px) {
   .table-of-contents.mobile:not(.collapsed) + .toc-overlay {
     display: block;
@@ -377,7 +364,7 @@
   }
 }
 
-// Adjust main content spacing - FIXED VERSION
+// Adjust main content spacing - FIXED VERSION WITH TOGGLE SPACE
 body {
   transition: padding-left 0.3s ease;
 }
@@ -393,19 +380,22 @@ body {
     padding-left: 320px; // Width of TOC
   }
   
+  // When TOC is collapsed, add small padding for toggle button
+  body.toc-collapsed {
+    padding-left: 40px; // Width of toggle button
+  }
+  
   .table-of-contents:not(.collapsed) ~ * .main-content,
   body:not(.toc-collapsed) .main-content {
     margin-left: 0;
   }
 }
 
-// Add body class management
-body.toc-collapsed {
-  padding-left: 0;
-}
-
-body.toc-collapsed .table-of-contents {
-  transform: translateX(-280px);
+// Mobile - no padding needed as toggle is positioned differently
+@media (max-width: 1024px) {
+  body.toc-collapsed {
+    padding-left: 0;
+  }
 }
 
 // Heading level styles
@@ -422,6 +412,7 @@ body.toc-collapsed .table-of-contents {
   font-size: 0.8rem;
   opacity: 0.8;
 }
+
 
 
 // Chapter navigation
