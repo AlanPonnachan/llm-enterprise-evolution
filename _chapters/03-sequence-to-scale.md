@@ -1,7 +1,7 @@
 ---
 layout: chapter
-title: "The Statistical Revolution "
-chapter_number: 2
+title: "From Sequence to Scale "
+chapter_number: 3
 reading_time: 12
 ---
 
