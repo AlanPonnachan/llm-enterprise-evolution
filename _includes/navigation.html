@@ -41,6 +41,11 @@
                         <span class="stat-label">Progress</span>
                     </div>
                 </div>
+                <!-- Scroll indicator -->
+                <div class="scroll-indicator" id="scroll-indicator">
+                    <span class="scroll-text">Scroll to see all chapters</span>
+                    <span class="scroll-arrow">↓</span>
+                </div>
             </div>
             
             <!-- Chapter Grid/List -->
@@ -99,18 +104,76 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('chapter-search');
     const chapterGrid = document.getElementById('chapter-grid');
     const viewBtns = document.querySelectorAll('.view-btn');
+    const scrollIndicator = document.getElementById('scroll-indicator');
     
-    // Open modal - ENHANCED WITH POSITIONING FIX
+    // Scroll indicator management
+    function updateScrollIndicator() {
+        if (!scrollIndicator || !chapterGrid) return;
+        
+        const { scrollTop, scrollHeight, clientHeight } = chapterGrid;
+        const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+        
+        // Hide indicator when scrolled past 20%
+        if (scrollPercentage > 20) {
+            scrollIndicator.classList.add('hidden');
+        } else {
+            scrollIndicator.classList.remove('hidden');
+        }
+    }
+    
+    // Enhanced grid scroll handling
+    if (chapterGrid) {
+        chapterGrid.addEventListener('scroll', updateScrollIndicator);
+        
+        // Initialize scroll indicator visibility
+        setTimeout(() => {
+            updateScrollIndicator();
+        }, 100);
+    }
+    
+    // Smooth scroll to current chapter when modal opens
+    function scrollToCurrentChapter() {
+        const currentChapter = document.querySelector('.chapter-card .current-badge')?.closest('.chapter-card');
+        if (currentChapter && chapterGrid) {
+            setTimeout(() => {
+                currentChapter.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 300); // Wait for modal animation
+        }
+    }
+    
+    // Open modal - AGGRESSIVE POSITIONING FIX
     function openModal() {
         modal.classList.add('active');
         document.body.classList.add('modal-open');
         
-        // Force modal to be visible and properly positioned
+        // Aggressive positioning and z-index fixes
         modal.style.display = 'flex';
-        modal.style.zIndex = '9999';
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.right = '0';
+        modal.style.bottom = '0';
+        modal.style.zIndex = '99999';
+        modal.style.background = 'rgba(0, 0, 0, 0.6)';
         
-        // Focus search input after modal is fully opened
+        const modalContent = modal.querySelector('.chapter-modal-content');
+        if (modalContent) {
+            modalContent.style.zIndex = '100000';
+            modalContent.style.position = 'relative';
+            modalContent.style.margin = 'auto';
+        }
+        
+        // Force body positioning
+        document.body.style.position = 'relative';
+        document.body.style.zIndex = '1';
+        
+        // Debug after modal opens
         setTimeout(() => {
+            console.log('Modal positioned at:', modal.getBoundingClientRect());
+            console.log('Modal z-index:', window.getComputedStyle(modal).zIndex);
             if (searchInput) {
                 searchInput.focus();
             }
@@ -118,17 +181,20 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateProgress();
         
-        // Ensure modal content is properly positioned
-        const modalContent = modal.querySelector('.chapter-modal-content');
-        if (modalContent) {
-            modalContent.style.zIndex = '10000';
+        // Reset scroll indicator
+        if (scrollIndicator) {
+            scrollIndicator.classList.remove('hidden');
         }
     }
     
-    // Close modal - ENHANCED
+    // Close modal - CLEAN RESET
     function closeModal() {
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
+        
+        // Reset body styles
+        document.body.style.position = '';
+        document.body.style.zIndex = '';
         
         // Clear search and reset filters after animation
         setTimeout(() => {
@@ -166,13 +232,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Change view mode
+    // Change view mode - ENHANCED WITH SCROLL RESET
     function changeView(view) {
         chapterGrid.className = `chapter-grid ${view}-view`;
         viewBtns.forEach(btn => {
             btn.classList.toggle('active', btn.dataset.view === view);
         });
         localStorage.setItem('chapter-view', view);
+        
+        // Reset scroll position and indicator when changing views
+        if (chapterGrid) {
+            chapterGrid.scrollTop = 0;
+            setTimeout(updateScrollIndicator, 100);
+        }
     }
     
     // Event listeners
