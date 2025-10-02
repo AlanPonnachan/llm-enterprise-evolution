@@ -27,6 +27,7 @@ layout: default
     </div>
 </div>
 
-<!-- Include TOC after content -->
-{% include table-of-contents.html %}
+{% if page.url != '/' %}
+  {% include table-of-contents.html %}
+{% endif %}
 </article>

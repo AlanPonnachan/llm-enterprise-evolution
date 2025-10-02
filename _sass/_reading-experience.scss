@@ -376,17 +376,17 @@ body {
 
 // When TOC is visible on desktop, adjust body padding
 @media (min-width: 1025px) {
-  body:not(.toc-collapsed) {
+  body.has-toc:not(.toc-collapsed) { // MODIFIED HERE
     padding-left: 320px; // Width of TOC
   }
   
   // When TOC is collapsed, add small padding for toggle button
-  body.toc-collapsed {
+  body.has-toc.toc-collapsed { // MODIFIED HERE
     padding-left: 40px; // Width of toggle button
   }
   
   .table-of-contents:not(.collapsed) ~ * .main-content,
-  body:not(.toc-collapsed) .main-content {
+  body.has-toc:not(.toc-collapsed) .main-content { // MODIFIED HERE
     margin-left: 0;
   }
 }

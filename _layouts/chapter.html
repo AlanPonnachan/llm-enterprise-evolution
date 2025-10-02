@@ -35,7 +35,9 @@ layout: default
     </div>
 
     <!-- Include TOC after content -->
-    {% include table-of-contents.html %}
+    {% if page.url != '/' %}
+      {% include table-of-contents.html %}
+    {% endif %}
                 
                 <!-- Chapter Navigation -->
                 <nav class="chapter-nav">
