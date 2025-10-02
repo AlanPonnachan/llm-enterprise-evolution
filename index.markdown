@@ -13,7 +13,10 @@ description: "A comprehensive 6-hour deep dive into..."
 #### [Chapter 4: The Sequential Bottleneck]({{ site.baseurl }}/chapters/04-bottleneck/)
 #### [Chapter 5: Attention Is All You Need]({{ site.baseurl }}/chapters/05-attention/)
 #### [Chapter 6: The Pre-Training Era]({{ site.baseurl }}/chapters/06-pre-training-era/)
-
+#### [Chapter 7: The API Economy]({{ site.baseurl }}/chapters/07-api-economy/)
+#### [Chapter 8: The Great Debate]({{ site.baseurl }}/chapters/08-debate/)
+#### [Chapter 9: The Enterprise LLM Stack]({{ site.baseurl }}/chapters/09-llm-stack/)
+#### [Chapter 10: The Horizon]({{ site.baseurl }}/chapters/10-horizon/)
 ---
 
 **Estimated Reading Time:** 6-8 hours  
