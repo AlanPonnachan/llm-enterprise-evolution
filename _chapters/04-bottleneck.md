@@ -3,6 +3,7 @@ layout: chapter
 title: "The Sequential Bottleneck"
 chapter_number: 4
 reading_time: 9
+date: 2025-09-22
 ---
 
 

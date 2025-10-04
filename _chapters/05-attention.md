@@ -3,6 +3,7 @@ layout: chapter
 title: "Attention Is All You Need"
 chapter_number: 5
 reading_time: 18
+date: 2025-09-25
 ---
 
 ##  "Attention Is All You Need": The Birth of the Transformer 

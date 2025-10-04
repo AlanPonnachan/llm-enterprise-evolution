@@ -3,6 +3,7 @@ layout: chapter
 title: "The Great Debate"
 chapter_number: 8
 reading_time: 15
+date: 2025-10-01
 ---
 
 ## Building on Bedrock: The Great Debate of RAG vs. Fine-Tuning 

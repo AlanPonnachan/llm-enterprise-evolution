@@ -3,6 +3,7 @@ layout: chapter
 title: "The Horizon"
 chapter_number: 10
 reading_time: 14
+date: 2025-10-04
 ---
 
 ## The Horizon: The Agentic and Multimodal Future 

@@ -3,6 +3,7 @@ layout: chapter
 title: "The API Economy"
 chapter_number: 7
 reading_time: 13
+date: 2025-09-30
 ---
 
 ## The API Economy: How GPT-3 Unleashed a Cambrian Explosion in AI 

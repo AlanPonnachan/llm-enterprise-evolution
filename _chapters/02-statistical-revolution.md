@@ -3,6 +3,7 @@ layout: chapter
 title: "The Statistical Revolution "
 chapter_number: 2
 reading_time: 12
+date: 2025-09-19
 ---
 
 # How Google Translate Was Born from the Statistical Revolution 

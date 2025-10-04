@@ -3,6 +3,7 @@ layout: chapter
 title: "Memory"
 chapter_number: 3
 reading_time: 16
+date: 2025-09-22
 ---
 
 ## The Memory Problem: Why AI Kept Forgetting and How LSTMs Finally Gave It a Past 

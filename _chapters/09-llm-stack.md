@@ -3,6 +3,7 @@ layout: chapter
 title: "The Enterprise LLM Stack"
 chapter_number: 9
 reading_time: 14
+date: 2025-10-02
 ---
 
 ## The Composable Enterprise LLM Stack

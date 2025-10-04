@@ -3,6 +3,7 @@ layout: chapter
 title: "The Symbolic Era"
 chapter_number: 1
 reading_time: 8
+date: 2025-09-18
 ---
 
 

@@ -3,6 +3,7 @@ layout: chapter
 title: "The Pre-Training Era"
 chapter_number: 6
 reading_time: 16
+date: 2025-09-28
 ---
 
 ## The Pre-Training Era: How BERT and GPT Flipped the NLP Game
