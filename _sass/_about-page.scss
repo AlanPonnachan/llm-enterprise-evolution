@@ -365,28 +365,31 @@
 .cta-section {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
+    padding: 4rem 0; // ADD THIS LINE
 }
 
 .cta-card {
     text-align: center;
     max-width: 700px;
     margin: 0 auto;
-    
+
     h2 {
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        color: white; // Correct: White text on the dark gradient background
         
         @media (max-width: 768px) {
             font-size: 2rem;
         }
     }
-    
+
     p {
         font-size: 1.2rem;
         opacity: 0.95;
         margin-bottom: 2rem;
-        
+        color: white; // Correct: White text on the dark gradient background
+
         @media (max-width: 768px) {
             font-size: 1rem;
         }
