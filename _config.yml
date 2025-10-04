@@ -34,9 +34,12 @@ navigation:
   - title: "About"
     url: "/about/"
 
-# Social links
+# Author information
 author:
-  name: "Your Name"
+  name: "Alan Ponnachan"
+  title: "ML Engineer | OSS Contributor"
+  bio: "Architecting end-to-end machine learning solutions, from open-source foundations to production scale."
+  github: "AlanPonnachan"
+  twitter: "alan_ponnachan"
+  linkedin: "alan-ponnachan-92731a214/"
   email: "your@email.com"
-  twitter: "yourusername"
-  github: "yourusername"
