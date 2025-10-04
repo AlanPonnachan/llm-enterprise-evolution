@@ -29,8 +29,6 @@ words_per_minute: 200
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Table of Contents"
-    url: "/toc/"
   - title: "About"
     url: "/about/"
 

@@ -93,8 +93,9 @@
   }
   
   .content-wrapper {
-    max-width: none;
+    max-width: 1100px;  // <-- CHANGE THIS
     width: 100%;
+    margin: 0 auto;    // <-- ADD THIS
   }
 }
 
@@ -114,6 +115,18 @@
   margin-top: 4rem;
   text-align: center;
   color: var(--text-muted);
+
+  a {
+    // New rule for footer links
+    color: var(--text-secondary); // Use a color with better contrast
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--primary-color); // On hover, brighten to the primary color
+    }
+  }
 }
 
 // Responsive design updates
