@@ -4,15 +4,19 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+## About The Project
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+**{{ site.title }}** is a comprehensive guide that traces the evolution of Large Language Models from their early symbolic roots to their modern application in the enterprise.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Through a series of detailed chapters, this project explores the key breakthroughs, pivotal debates, and technological shifts that have shaped the current AI landscape. It is designed for developers, product managers, and technology leaders who want to gain a deeper understanding of the foundations upon which modern AI is built.
 
+---
 
-[jekyll-organization]: https://github.com/jekyll
+## About The Author
+
+This guide is written and maintained by **{{ site.author.name | default: "the author" }}**.
+
+You can connect or see more work here:
+
+- **GitHub:** [@{{ site.author.github }}](https://github.com/{{ site.author.github }})
+- **Twitter:** [@{{ site.author.twitter }}](https://twitter.com/{{ site.author.twitter }})

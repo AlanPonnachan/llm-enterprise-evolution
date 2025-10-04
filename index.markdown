@@ -1,7 +1,8 @@
 ---
 layout: post
 title: "A Brief history of LLMs in Production"
-description: "A comprehensive 6-hour deep dive into..."
+description: "A comprehensive deep dive"
+
 ---
 
 # Table of Contents
@@ -19,5 +20,3 @@ description: "A comprehensive 6-hour deep dive into..."
 #### [Chapter 10: The Horizon]({{ site.baseurl }}/chapters/10-horizon/)
 ---
 
-**Estimated Reading Time:** 6-8 hours  
-**Last Updated:** {{ page.date | date: "%B %Y" }}
