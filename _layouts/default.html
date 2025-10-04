@@ -31,7 +31,7 @@
         }
     </style>
 </head>
-<body {% if page.url != '/' %}class="has-toc"{% endif %}>
+<body {% if page.layout == 'chapter' %}class="has-toc"{% endif %}>
     <div class="reading-progress"></div>
     
     {% include header.html %}
